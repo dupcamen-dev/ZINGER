@@ -506,9 +506,9 @@ document.addEventListener('DOMContentLoaded', () => {
         //init_animations
         init_animations()     
 
-        //si hay cookies
-        if(document.querySelector('.cky-consent-container')){
-            const banner_cookie = document.querySelector(".cky-consent-container");
+        //custom cookie banner
+        const banner_cookie = document.getElementById('cookie-banner');
+        if(banner_cookie && localStorage.getItem('stichfest_cookies') !== 'accepted'){
             banner_cookie.classList.add('on')
             gsap.from(banner_cookie,{opacity:0, duration:.5, delay: 1, ease:'power1.inOut'})
         }

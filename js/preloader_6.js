@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(control) console.log('loaderAnim_end: ',loaderAnim_end);
         if(fake_progress==100 && loaderAnim_end) loadComplete();
     }})
-    logo_tl.from('.header .logo__normal span, .header .logo__is span, .header .logo__boring span',{x:'120%', duration: .5, stagger: 0.1, ease: 'power3.out'},0)
+    logo_tl.from('.header .logo__normal span, .header .logo__is span',{yPercent: 90, opacity: 0, rotate: 7, duration: .7, stagger: 0.06, ease: 'power3.out'},0)
     // logo_tl.from(elem.querySelectorAll('.logo__boring span'),{x:'-120%', duration: .5, stagger: 0.1, ease: 'power3.out'}
           
     //if isset mods change color preloader

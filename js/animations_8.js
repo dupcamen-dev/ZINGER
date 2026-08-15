@@ -135,12 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     {backgroundColor: cabecera_bgcolor, duration:.5, ease:'none'})
 
                 //anim out logo
-                cabecera_tl.to(header.querySelectorAll('.logo__normal span'),
-                    {y:'120%', duration: .35, stagger: 0.125, ease: 'power3.in'})
-                cabecera_tl.to(header.querySelectorAll('.logo__boring span'),
-                    {y:'120%', duration: .35, stagger: -0.125, ease: 'power3.in'},'<+=.120')
-                cabecera_tl.to(header.querySelectorAll('.logo__is span'),
-                    {y:'120%', duration: .35, stagger: 0.125, ease: 'power3.in'},'<+=.65')
+                cabecera_tl.to(header.querySelectorAll('.logo__normal span, .logo__is span'),
+                    {opacity: 0, yPercent: -20, duration: .45, stagger: 0.05, ease: 'power1.in'})
 
                 // //anim images
                 cabecera_tl.from(image,{ '--clipPath':'100% 0% 0% 0%', duration: 2, ease: 'power3.inOut', onComplete: ()=>{
@@ -155,15 +151,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 
 
                 //anim logo
-                cabecera_tl.from(logo_images[0],{ y:'110%', duration: 1, ease: 'power2.out',
+                cabecera_tl.from(logo_images[0],{ opacity: 0, scale: 1.08, duration: 1.1, ease: 'power3.out',
                     onStart: () => {
                         logo_wrap.classList.remove('d-none')
-                        // pretitle.classList.remove('d-none')
-                        // caption.classList.remove('d-none')
                     }
                 },'-=1')
                 if(logo_images[1])
-                    cabecera_tl.from(logo_images[1],{ y:'110%', duration: 1.25, ease: 'power2.out' },'-=.5')
+                    cabecera_tl.from(logo_images[1],{ opacity: 0, scale: 0.94, duration: 1.15, ease: 'power3.out' },'-=.65')
                 
                 //anim rest
                 cabecera_tl.from(logo_images,{opacity:1, duration: 1, onStart:()=>{

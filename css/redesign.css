@@ -1,0 +1,420 @@
+/* ==========================================================================
+   STICHFEST — redesign stylesheet
+   Loaded after main(_N).css on every page. Legal distinctness from the
+   original template: new palette, new typography system, new components.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- tokens */
+:root {
+  /* new palette */
+  --black: #1A1814;   /* warm ink */
+  --beige: #F7F3EC;   /* warm bone */
+  --cream: #E9E2D6;   /* deeper cream for formerly-dark panels */
+  --red: #C4573A;     /* terracotta brand accent */
+  --blue: #CFE3E8;    /* dusty ice blue */
+  --grey: #6B675F;    /* warm grey */
+  --green: #8A9B8C;   /* sage */
+  --yellow: #E9B44C;  /* mustard (fixes previously undefined var) */
+  --green-light: #8A9B8C;
+
+  /* new typography: system stacks — no webfont downloads, fully distinct */
+  --f-regular: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --f-medium: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --f-light: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --f-edit: Georgia, "Times New Roman", serif;
+  --f-edit-regular: Georgia, "Times New Roman", serif;
+  --f-edit-italic: Georgia, "Times New Roman", serif;
+  --f-izmir: "Arial Narrow", "Arial", "Helvetica Neue", sans-serif;
+}
+
+/* --------------------------------------------------- page backgrounds */
+/* base template alternates dark (.bg-black) / blue (.bg-blue) and beige
+   sections. The redesign flattens every section onto the warm bone ground,
+   with a slightly deeper cream tone for the formerly-dark panels. */
+html {
+  background: var(--beige);
+}
+body {
+  font-family: var(--f-regular);
+  -webkit-font-smoothing: antialiased;
+}
+.bg-black,
+.bg-blue {
+  background: var(--cream);
+}
+main .c-white {
+  color: var(--black);
+}
+
+.f-edit, .f-edit-reg, .t-edit {
+  font-family: var(--f-edit);
+  font-weight: 400;
+  font-style: normal;
+}
+.f-edit-italic {
+  font-family: var(--f-edit-italic);
+  font-style: italic;
+}
+.f-medium { font-weight: 600; }
+.f-light { font-weight: 300; }
+
+/* display headings: editorial serif with tight tracking */
+.t-supertitulo-xl, .t-supertitulo-l, .t-supertitulo,
+.t-titulo-xxl, .t-titulo-xl, .t-titulo-l, .t-titulo {
+  letter-spacing: -0.015em;
+}
+
+/* uppercase + labels: condensed grotesque, subtle tracking */
+.f-izmir, .t-upper, .t-subtitulo {
+  letter-spacing: 0.055em;
+}
+
+/* ------------------------------------------------------- hide design grid */
+.grid {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------ selection */
+::selection {
+  background: var(--red);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------- buttons */
+.btn--bg {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+  border-radius: 999px;
+  --b-radius: 999px;
+  padding: calc(0.72em - 2px) calc(1.65em - 2px);
+  font-family: var(--f-izmir);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+.btn--bg::before {
+  background: var(--beige);
+}
+.btn--bg-xl {
+  --b-radius: 999px;
+  padding: calc(1.05em - 2px) calc(2.85em - 2px);
+}
+.btn--bg-inv {
+  background: var(--beige);
+  color: var(--black);
+  border-color: var(--black);
+}
+.btn--bg-inv::before {
+  background: var(--black);
+}
+.btn--bg-inv.btn--bg-blue { background: var(--blue); }
+.btn--bg-inv.btn--bg-red { background: var(--red); color: #fff; }
+.btn--bg-inv.btn--bg-green { background: var(--green); }
+.btn--bg-inv.btn--bg-grey { background: var(--grey); }
+
+.btn--circle {
+  background: var(--red);
+  color: #fff;
+  border: 1.5px solid var(--red);
+  border-radius: 100%;
+  font-family: var(--f-izmir);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.btn--circle:hover {
+  background: var(--black);
+  border-color: var(--black);
+}
+
+/* header buttons keep the template's adaptive blend/invert mechanism */
+header .btn--bg {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+  --b-radius: calc( ( 0.65em - 2px ) * 3 );
+  border-radius: var(--b-radius);
+}
+header .btn--bg::before { background: #fff; }
+header .header__btn {
+  font-family: var(--f-izmir);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+header .header__footer__btn .circle {
+  background: #fff;
+}
+
+/* ------------------------------------------------------------ link style */
+.link.under:after {
+  background: var(--red);
+  height: 1.5px;
+}
+
+/* ------------------------------------------------------- cursor (mouse) */
+#mouse div { background-color: var(--red); }
+#mouse span {
+  background-color: var(--yellow);
+  font-family: var(--f-izmir);
+  letter-spacing: 0.1em;
+}
+#mouse span span { color: var(--black); }
+
+/* -------------------------------------------------------------- header */
+header .header__logo .logo__normal {
+  font-family: var(--f-izmir);
+  font-weight: 700;
+  font-size: 1.06em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  top: 0.18em;
+  left: -0.06em;
+}
+header .header__logo .logo__is {
+  font-family: var(--f-izmir);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.62em;
+  letter-spacing: 0.05em;
+}
+header .header__logo .logo__group { gap: 0.12em; }
+header .header__logo .logo__is .char { padding-right: 0.02em; right: -0.02em; }
+
+/* needle-eye mark on the site header lockup */
+header .header__logo::after {
+  content: "";
+  position: absolute;
+  top: 0.05em;
+  right: -0.35em;
+  width: 1.5em;
+  height: 1.5em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-width='3' stroke-linecap='round'%3E%3Ccircle cx='16' cy='16' r='11'/%3E%3Cpath d='M10 23 L23 10'/%3E%3Cpath d='M23 10 L30 5' stroke-width='2.5' stroke-dasharray='2.5 3.5'/%3E%3Ccircle cx='23' cy='10' r='2.4' fill='%23FFFFFF' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  pointer-events: none;
+}
+
+/* header preloader meter */
+header .header__percent {
+  font-family: var(--f-edit);
+  font-style: italic;
+}
+header .header__progress {
+  height: 0.2em;
+  border-radius: 999px;
+}
+
+/* ---------------------------------------------------------------- menu */
+header .header__menu__bg { background: var(--black); }
+header .header__menu__content,
+header .header__menu__nav-site {
+  font-family: var(--f-izmir);
+  letter-spacing: 0.05em;
+}
+header .header__menu__nav-site li .line {
+  font-family: var(--f-edit);
+  font-weight: 400;
+}
+header .header__menu .link.under:after { background: #fff; }
+
+/* --------------------------------------------------------- hero wordmark */
+main .mod-header__content__wrap-title-text {
+  mix-blend-mode: normal;
+}
+
+/* --------------------------------------------------- hero / intro titles */
+main .mod-scroll__intro__title {
+  font-family: var(--f-izmir);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+main .mod-scroll__intro__title em {
+  font-family: var(--f-edit-italic);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+main .mod-scroll__intro__menu,
+main .mod-scroll__intro__copyright {
+  font-family: var(--f-izmir);
+  letter-spacing: 0.12em;
+}
+
+/* ----------------------------------------------------------- cards/media */
+main .mod-media--multiple .mod-media__card__image .media__wrap-source,
+main .mod-media--multiple .mod-media__card__image .media__source,
+main .mod-media--double .media__wrap-source,
+main .mod-media--double .media__source {
+  border-radius: var(--border-radius);
+}
+main .mod-media--multiple .mod-media__card__image {
+  overflow: clip;
+}
+main .mod-media--multiple .mod-media__card__title,
+main .mod-media--double .mod-media__card__title,
+main .mod-content--cols .big_text {
+  font-family: var(--f-edit);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+main .mod-media--multiple .mod-media__card__text {
+  font-family: var(--f-regular);
+}
+
+/* lists */
+main .mod-content--lists ul li {
+  font-family: var(--f-edit);
+}
+main .mod-content--lists ul li::before {
+  color: var(--red);
+}
+
+/* ------------------------------------------------------------- footer */
+main .mod-footer__bg.footer__wordmark {
+  overflow: hidden;
+}
+main .mod-footer__bg.footer__wordmark span {
+  font-family: var(--f-edit);
+  font-weight: 400;
+  font-size: 13.5vw;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--black);
+}
+main .mod-footer__content__project__name {
+  font-family: var(--f-edit);
+  font-weight: 400;
+}
+main .mod-footer__content__project__text {
+  font-family: var(--f-regular);
+}
+main .mod-footer__footer__copyright,
+main .mod-footer__footer__legal {
+  font-family: var(--f-izmir);
+  letter-spacing: 0.1em;
+}
+main .mod-footer__footer__legal a:hover {
+  color: var(--red);
+}
+
+/* ------------------------------------------------------------- forms */
+.modal--contact .modal__content__form__label,
+.modal--contact .modal__content__form__input {
+  font-family: var(--f-izmir);
+}
+.modal--contact .modal__content .wpcf7-submit:not([disabled]):hover {
+  background: var(--red);
+  color: #fff;
+}
+.modal--contact .modal__content .wpcf7-spinner {
+  background-color: var(--green-light);
+}
+
+/* ---------------------------------------------------------- 404 page */
+main .mod-title--404 .t-supertitulo-xl {
+  font-family: var(--f-edit);
+  font-weight: 400;
+  color: var(--red);
+}
+
+/* ================================================================
+   COOKIE BANNER — single-button, bottom-left, fully custom
+   ================================================================ */
+#cookie-banner {
+  position: fixed;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 9999;
+  width: min(26rem, calc(100vw - 3rem));
+  box-sizing: border-box;
+  background: var(--beige);
+  color: var(--black);
+  border: 1.5px solid var(--black);
+  border-radius: 1.25rem;
+  padding: 1.4rem 1.5rem 1.5rem;
+  box-shadow: 0 1.5rem 3.5rem rgba(26, 24, 20, 0.22);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.4s, opacity 0.4s ease;
+}
+#cookie-banner.on {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 0.4s ease;
+}
+.cookie-banner__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.cookie-banner__mark {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+}
+.cookie-banner__mark svg {
+  display: block;
+  width: 1.7rem;
+  height: 1.7rem;
+}
+.cookie-banner__text {
+  flex: 1 1 14rem;
+  margin: 0;
+  padding-top: 0.25rem;
+  font-family: var(--f-regular);
+  font-size: var(--parrafo-l);
+  line-height: 1.5;
+}
+.cookie-banner__btn {
+  flex: 0 0 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.15rem;
+  padding: 0.8em 1.6em;
+  background: var(--black);
+  color: var(--beige);
+  border: 1.5px solid var(--black);
+  border-radius: 999px;
+  font-family: var(--f-izmir);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: var(--parrafo-l);
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.cookie-banner__btn:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+@media (max-width: 950px) {
+  #cookie-banner {
+    left: 0.9rem;
+    bottom: 0.9rem;
+    width: min(24rem, calc(100vw - 1.8rem));
+  }
+}
+
+/* ================================================================
+   CHAR ANIMATIONS — allow the new (non-wipe) reveal to breathe
+   ================================================================ */
+header .header__logo .char {
+  overflow: visible;
+}
