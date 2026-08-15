@@ -1540,7 +1540,50 @@ Musterstraße 12<br>
 
 </section>
 
-</main>
+<section class="mod-footer wrapper bg-beige c-black pt-xs pb-xs">
+ 
+            <div class="mod-footer__buttons-header">
+                            <a href="" class="mod-footer__buttons-header__btn f-medium t-titulo-l link">
+                    INSTAGRAM                </a>
+                <span class="f-medium t-titulo-l">|</span>
+                            <a href="error404.html" class="mod-footer__buttons-header__btn f-medium t-titulo-l link">
+                    info@stichfest.de                </a>
+                <span class="f-medium t-titulo-l">|</span>
+                    </div>
+    
+    <div class="mod-footer__content">
+
+        <!-- <img class="mod-footer__bg" 
+            src="https://stichfest.es/wp-content/themes/stichfest25/images/logo_boring_footer.svg"> -->
+        
+        <div class="mod-footer__bg footer__wordmark" aria-hidden="true"><span>Stichfest&reg;</span></div>
+
+
+        <div class="mod-footer__content__project">
+            <div class="mod-footer__content__project__year f-edit t-parrafo-l">(2026)</div>
+            <div class="mod-footer__content__project__wrap-image expand_mouse follow__wrap" data-text="Erkunden" data-url="reparatur.html">
+                <a href="reparatur.html" class="btn btn--circle follow__mouse--md f-izmir t-parrafo-l d-none d-md-flex">Erkunden</a>
+                
+<div class="media mod-footer__content__project__image noAspect" data-delay=""> 
+            <div class="media__wrap-source image">
+            <img class="media__source w-100" src="images/machine-action-1.jpg">
+        </div>
+    </div>
+
+            </div>
+            <div class="mod-footer__content__project__name f-medium t-titulo-l">Stichfest&reg;</div>
+            <div class="mod-footer__content__project__text t-center f-edit t-parrafo-l">Reparatur, Wartung und Beratung<br>für Ihre Nähmaschine</div>
+        </div>
+    </div>
+
+    <div class="mod-footer__footer">
+        <div class="mod-footer__footer__copyright f-izmir t-parrafo">STICHFEST ©2026</div>
+        <ul id="menu-legales" class="mod-footer__footer__legal f-izmir t-parrafo t-upper"><li id="menu-item-1415" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1415"><a href="datenschutz.html">Datenschutz</a></li>
+<li id="menu-item-1414" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1414"><a href="cookie-richtlinie.html">Cookie-Richtlinie</a></li>
+<li id="menu-item-1413" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1413"><a href="impressum.html">Impressum</a></li>
+</ul>\n		<div class="mod-footer__footer__credit t-parrafo f-izmir"><a href="https://millionpixels.dev/" target="_blank" rel="noopener noreferrer">Designed &amp; Built by Million Pixels</a></div>\n		<div class="mod-footer__footer__credit t-parrafo f-izmir"><a href="https://millionpixels.dev/" target="_blank" rel="noopener noreferrer">Designed &amp; Built by Million Pixels</a></div>    </div>
+
+</section>\n</main>
  
 
 
@@ -1822,6 +1865,14 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
 				b.classList.remove('on');
 			});
 		}
+		// never let the notice block scrolling: hide it on the first scroll
+		var sw = document.querySelector('#smooth-wrapper');
+		var scrollers = sw ? [sw, window] : [window];
+		var hide = function(){
+			b.classList.remove('on');
+			scrollers.forEach(function(s){ s.removeEventListener('scroll', hide); });
+		};
+		scrollers.forEach(function(s){ s.addEventListener('scroll', hide, { passive: true }); });
 	})();
 	</script>
 </body></html>

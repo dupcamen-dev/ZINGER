@@ -920,7 +920,7 @@ before-bg-blue">
         <ul id="menu-legales" class="mod-footer__footer__legal f-izmir t-parrafo t-upper"><li id="menu-item-1415" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1415"><a href="datenschutz.html">Datenschutz</a></li>
 <li id="menu-item-1414" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1414"><a href="cookie-richtlinie.html">Cookie-Richtlinie</a></li>
 <li id="menu-item-1413" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1413"><a href="impressum.html">Impressum</a></li>
-</ul>    </div>
+</ul>\n		<div class="mod-footer__footer__credit t-parrafo f-izmir"><a href="https://millionpixels.dev/" target="_blank" rel="noopener noreferrer">Designed &amp; Built by Million Pixels</a></div>    </div>
 
 </section>
 
@@ -1150,6 +1150,14 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
 				b.classList.remove('on');
 			});
 		}
+		// never let the notice block scrolling: hide it on the first scroll
+		var sw = document.querySelector('#smooth-wrapper');
+		var scrollers = sw ? [sw, window] : [window];
+		var hide = function(){
+			b.classList.remove('on');
+			scrollers.forEach(function(s){ s.removeEventListener('scroll', hide); });
+		};
+		scrollers.forEach(function(s){ s.addEventListener('scroll', hide, { passive: true }); });
 	})();
 	</script>
 </body></html>

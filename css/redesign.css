@@ -200,21 +200,6 @@ header .header__logo .logo__is {
 header .header__logo .logo__group { gap: 0.12em; }
 header .header__logo .logo__is .char { padding-right: 0.02em; right: -0.02em; }
 
-/* needle-eye mark on the site header lockup */
-header .header__logo::after {
-  content: "";
-  position: absolute;
-  top: 0.05em;
-  right: -0.35em;
-  width: 1.5em;
-  height: 1.5em;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-width='3' stroke-linecap='round'%3E%3Ccircle cx='16' cy='16' r='11'/%3E%3Cpath d='M10 23 L23 10'/%3E%3Cpath d='M23 10 L30 5' stroke-width='2.5' stroke-dasharray='2.5 3.5'/%3E%3Ccircle cx='23' cy='10' r='2.4' fill='%23FFFFFF' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  pointer-events: none;
-}
-
 /* header preloader meter */
 header .header__percent {
   font-family: var(--f-edit);
@@ -320,6 +305,61 @@ main .mod-footer__footer__legal {
 }
 main .mod-footer__footer__legal a:hover {
   color: var(--red);
+}
+
+/* wide footer: bottom bar spreads across the full width — copyright left,
+   legal links right, Million Pixels credit at the far end */
+main .mod-footer__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  width: 100%;
+}
+main .mod-footer__footer__copyright {
+  width: auto;
+  margin: 0;
+  text-align: left;
+  line-height: 1.3;
+}
+main .mod-footer__footer__legal {
+  position: static;
+  top: auto;
+  left: auto;
+  transform: none;
+  margin: 0;
+  display: flex;
+  gap: 1.8rem;
+}
+main .mod-footer__footer__credit {
+  font-family: var(--f-izmir);
+  letter-spacing: 0.1em;
+}
+main .mod-footer__footer__credit a {
+  color: var(--black);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  transition: color 0.2s ease;
+}
+main .mod-footer__footer__credit a:hover {
+  color: var(--red);
+}
+@media (max-width: 950px) {
+  main .mod-footer__footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  main .mod-footer__footer__legal {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    margin-bottom: 2rem;
+  }
+  main .mod-footer__footer__credit {
+    margin-top: 0.5rem;
+  }
 }
 
 /* ------------------------------------------------------------- forms */
