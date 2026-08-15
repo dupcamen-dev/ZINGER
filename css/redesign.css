@@ -6,16 +6,16 @@
 
 /* ---------------------------------------------------------------- tokens */
 :root {
-  /* new palette */
-  --black: #1A1814;   /* warm ink */
-  --beige: #F7F3EC;   /* warm bone */
-  --cream: #E9E2D6;   /* deeper cream for formerly-dark panels */
-  --red: #C4573A;     /* terracotta brand accent */
-  --blue: #CFE3E8;    /* dusty ice blue */
-  --grey: #6B675F;    /* warm grey */
-  --green: #8A9B8C;   /* sage */
-  --yellow: #E9B44C;  /* mustard (fixes previously undefined var) */
-  --green-light: #8A9B8C;
+  /* new palette - Vintage Werkstatt */
+  --black: #201913;   /* deep warm ink */
+  --beige: #F4EDE0;   /* aged parchment */
+  --cream: #E0D2B8;   /* old-paper cream for formerly-dark panels */
+  --red: #A63D24;     /* brick-red brand accent */
+  --blue: #93AFAE;    /* muted blue-green */
+  --grey: #6E675B;    /* warm umber-grey */
+  --green: #7E8F7C;   /* sage */
+  --yellow: #D9A441;  /* brass */
+  --green-light: #7E8F7C;
 
   /* new typography: system stacks — no webfont downloads, fully distinct */
   --f-regular: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -31,7 +31,8 @@
 /* base template alternates dark (.bg-black) / blue (.bg-blue) and beige
    sections. The redesign flattens every section onto the warm bone ground,
    with a slightly deeper cream tone for the formerly-dark panels. */
-html {
+html,
+body {
   background: var(--beige);
 }
 body {
@@ -49,8 +50,8 @@ main .c-white {
 /* lighter rhythm: no stark white or dark-grey bands, red blocks soften to a
    pale terracotta tint so the page reads airy instead of heavy */
 .bg-white { background: var(--beige); }
-.bg-grey { background: #ECE6DA; }
-.bg-red { background: #F0DFD3; }
+.bg-grey { background: #E6DCC8; }
+.bg-red { background: #E5CDBB; }
 
 .f-edit, .f-edit-reg, .t-edit {
   font-family: var(--f-edit);
@@ -802,6 +803,79 @@ main .mod-scroll__projectInt__title {
 
 main .mod-scroll__projectInt__image-small {
   display: none;
+}
+
+/* ================================================================
+   SMALLER HEADINGS (redesign) - display type scaled down ~13% at
+   every breakpoint so the heavy titles feel lighter on the page.
+   ================================================================ */
+:root {
+  --supertitulo-xl: 10.4rem;
+  --supertitulo-l: 8.3rem;
+  --supertitulo: 5.7rem;
+  --titulo-xxl: 3.05rem;
+  --titulo-xl: 2.6rem;
+  --titulo-l: 1.95rem;
+  --titulo: 1.45rem;
+  --supertitulo-xl-lh: 9.1rem;
+  --supertitulo-l-lh: 8.3rem;
+  --supertitulo-lh: 5.7rem;
+  --titulo-xxl-lh: 3.05rem;
+  --titulo-xl-lh: 3.05rem;
+  --titulo-l-lh: 2.35rem;
+  --titulo-lh: 1.9rem;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --supertitulo-xl: 5.8rem;
+    --supertitulo-l: 5.05rem;
+    --supertitulo: 2.9rem;
+    --titulo-xxl: 1.95rem;
+    --titulo-xl: 1.75rem;
+    --titulo-l: 1.4rem;
+    --titulo: 1.05rem;
+    --supertitulo-xl-lh: 5.2rem;
+    --supertitulo-l-lh: 5.05rem;
+    --supertitulo-lh: 2.9rem;
+    --titulo-xxl-lh: 1.95rem;
+    --titulo-xl-lh: 2rem;
+    --titulo-l-lh: 1.65rem;
+    --titulo-lh: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --supertitulo-xl: 2.6rem;
+    --supertitulo-l: 2.6rem;
+    --supertitulo: 1.9rem;
+    --titulo-xxl: 1.55rem;
+    --titulo-xl: 1.55rem;
+    --titulo-l: 1.25rem;
+    --titulo: 0.95rem;
+    --supertitulo-xl-lh: 2.35rem;
+    --supertitulo-l-lh: 2.35rem;
+    --supertitulo-lh: 1.9rem;
+    --titulo-xxl-lh: 1.55rem;
+    --titulo-xl-lh: 1.75rem;
+    --titulo-l-lh: 1.5rem;
+    --titulo-lh: 1.15rem;
+  }
+}
+
+@media (max-width: 468px) {
+  main .mod-title--chapter .t-supertitulo-xl {
+    font-size: 2.55rem;
+    line-height: 2.3rem;
+  }
+}
+
+@media (max-width: 375px) {
+  main .mod-title--chapter .t-supertitulo-xl {
+    font-size: 2.2rem;
+    line-height: 2rem;
+  }
 }
 
 main .mod-scroll__projectInt .follow__mouse {
