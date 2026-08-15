@@ -921,3 +921,174 @@ main .mod-scroll__projectInt__image-small {
 main .mod-scroll__projectInt .follow__mouse {
   top: 25% !important;
 }
+
+/* ================================================================
+   KONTAKT PAGE — form, table, anchored sections
+   ================================================================ */
+main .kontakt-form__wrap {
+  width: calc((99.9vw - var(--wrapper-padd) * 2 - var(--grid-gap) * 11) / 12 * 8 + var(--grid-gap) * 7);
+  max-width: 48rem;
+  align-items: stretch;
+}
+.kontakt-form {
+  width: 100%;
+}
+.kontakt-form__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-bottom: 1.6rem;
+}
+.kontakt-form__label {
+  font-family: var(--f-izmir);
+  font-size: var(--parrafo);
+  letter-spacing: 0.05em;
+}
+.kontakt-form__input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--f-izmir);
+  font-size: var(--parrafo-l);
+  color: var(--black);
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--black);
+  border-radius: 0;
+  padding: 0.45rem 0.1rem 0.55rem;
+  transition: border-color 0.25s ease;
+}
+.kontakt-form__input:focus {
+  outline: none;
+  border-bottom-width: 2px;
+}
+.kontakt-form__textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+.kontakt-form__legal {
+  margin-top: 0.5rem;
+}
+.kontakt-form__check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  font-size: var(--subtitulo);
+  line-height: 1.4;
+  cursor: pointer;
+}
+.kontakt-form__check input {
+  margin-top: 0.25rem;
+  flex: 0 0 auto;
+  accent-color: var(--black);
+}
+.kontakt-form__check a.link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.kontakt-form__footer {
+  margin-top: 2.2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.kontakt-table__wrap {
+  width: 100%;
+  max-width: 40rem;
+}
+.kontakt-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+}
+.kontakt-table__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6%;
+  font-family: var(--f-izmir);
+  font-size: var(--parrafo-l);
+  line-height: var(--parrafo-l-lh);
+  align-items: center;
+}
+.kontakt-table__row span {
+  width: 45%;
+  text-align: center;
+}
+.kontakt-table__row--header {
+  font-family: var(--f-medium);
+  font-size: var(--parrafo-l);
+  border-bottom: 1px solid var(--black);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+main #termin,
+main #oeffnungszeiten {
+  scroll-margin-top: 2rem;
+}
+
+/* ================================================================
+   CTA — consistent, well-spaced call-to-action blocks
+   ================================================================ */
+main .mod-content--center:has(.mod-content__btn) {
+  padding-top: var(--padding);
+  padding-bottom: var(--padding-md);
+}
+main .mod-content--center .mod-content__btn {
+  min-width: 16em;
+  text-align: center;
+  align-self: center;
+}
+main .mod-cta {
+  padding-top: var(--padding);
+  padding-bottom: var(--padding-md);
+}
+
+/* ================================================================
+   BACK TO TOP — fixed button, bottom right
+   ================================================================ */
+.back-to-top {
+  position: fixed;
+  right: 1.6rem;
+  bottom: 1.6rem;
+  z-index: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1rem 1.4rem;
+  background: var(--black);
+  color: var(--beige);
+  border: 1.5px solid var(--black);
+  border-radius: 999px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, background-color 0.25s ease, border-color 0.25s ease;
+}
+.back-to-top.on {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+.back-to-top svg {
+  display: block;
+}
+.back-to-top__label {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+}
+@media (max-width: 950px) {
+  .back-to-top {
+    right: 1rem;
+    bottom: 1rem;
+    padding: 0.85rem 1.05rem;
+  }
+  .back-to-top__label {
+    display: none;
+  }
+}
