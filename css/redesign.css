@@ -163,6 +163,49 @@ header .header__footer__btn .circle {
   background: #fff;
 }
 
+/* header nav — menu links pulled into the pinned header bar, matching the
+   header buttons' adaptive invert/blend mechanism */
+header .header__nav {
+  position: absolute;
+  top: var(--wrapper-padd);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  pointer-events: all;
+}
+header .header__nav a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55em 1.15em;
+  background: #000;
+  color: #fff;
+  border: 1.5px solid #000;
+  border-radius: 999px;
+  font-family: var(--f-izmir);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  filter: invert(100%);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+header .header__nav a:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-1px);
+}
+@media (max-width: 1024px) {
+  header .header__nav {
+    display: none;
+  }
+}
+
 /* ------------------------------------------------------------ link style */
 .link.under:after {
   background: var(--red);
@@ -441,13 +484,13 @@ main .mod-scroll__projects .last-item__content {
   border-radius: 1.25rem;
   padding: 1.4rem 1.5rem 1.5rem;
   box-shadow: 0 1.5rem 3.5rem rgba(26, 24, 20, 0.22);
-  visibility: hidden;
-  opacity: 0;
+  visibility: hidden !important;
+  opacity: 0 !important;
   transition: visibility 0s linear 0.4s, opacity 0.4s ease;
 }
 #cookie-banner.on {
-  visibility: visible;
-  opacity: 1;
+  visibility: visible !important;
+  opacity: 1 !important;
   transition: visibility 0s linear 0s, opacity 0.4s ease;
 }
 .cookie-banner__inner {
@@ -573,6 +616,10 @@ main .mod-scroll__intro__text {
   margin-right: var(--wrapper-padd);
 }
 
+main .mod-scroll__intro__btn {
+  margin-right: var(--wrapper-padd);
+}
+
 main .mod-scroll__images {
   padding-right: 0;
   padding-bottom: 1.8rem;
@@ -675,32 +722,6 @@ main .mod-scroll__images-text .flipMedia:nth-of-type(2) {
 main .mod-scroll__images-text__text {
   width: 99%;
   padding: 2.4rem 0;
-}
-
-main .mod-scroll__carousel {
-  width: 100%;
-  height: 1.5em !important;
-}
-/* carousel band is --black in main.css (was dark ink, now light parchment) —
-   pin to the dark ground so the light band text stays legible */
-main .mod-scroll__carousel {
-  background: var(--beige);
-}
-
-main .mod-scroll__carousel__content {
-  font-size: 3.7rem;
-  gap: 1rem;
-  transform: translateY(0) rotate(0deg);
-  transform-origin: unset;
-}
-
-main .mod-scroll__carousel__content span {
-  gap: 1rem;
-  padding: 0.6em 0;
-}
-
-main .mod-scroll__carousel__image {
-  max-width: unset;
 }
 
 main .mod-scroll__terms {
@@ -1137,6 +1158,52 @@ main .mod-cta {
     padding: 0.85rem 1.05rem;
   }
   .back-to-top__label {
+    display: none;
+  }
+}
+
+/* ================================================================
+   CONTACT FLOAT — fixed "message" button next to back-to-top,
+   links to the contact page
+   ================================================================ */
+.contact-float {
+  position: fixed;
+  right: calc(1.6rem + 9.5rem);
+  bottom: 1.6rem;
+  z-index: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1rem 1.4rem;
+  background: var(--red);
+  color: #fff;
+  border: 1.5px solid var(--red);
+  border-radius: 999px;
+  font-family: var(--f-izmir);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.contact-float:hover {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--beige);
+  transform: translateY(-2px);
+}
+.contact-float svg {
+  display: block;
+}
+@media (max-width: 950px) {
+  .contact-float {
+    right: calc(1rem + 3.6rem);
+    bottom: 1rem;
+    padding: 0.85rem 1.05rem;
+  }
+  .contact-float__label {
     display: none;
   }
 }
