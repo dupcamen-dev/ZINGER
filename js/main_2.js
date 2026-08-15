@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setClicks();
 
         //last_animations
-        if(!document.querySelector('.mod-scroll') || is_mobile) last_animations()
+        if(!document.querySelector('.mod-scroll') || is_mobile || window.REDESIGN_VERTICAL) last_animations()
 
         //generateVideos
         generateVideos()

@@ -396,7 +396,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         }
 
         //set clicks proyects in mobile
-        if(document.querySelectorAll('.mod-scroll__projectInt').length && is_mobile){
+        if(document.querySelectorAll('.mod-scroll__projectInt').length && (is_mobile || window.REDESIGN_VERTICAL)){
             document.querySelectorAll('.mod-scroll__projectInt').forEach( elem => {
 
                 elem.addEventListener('click',(ev) => {
@@ -409,7 +409,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         }
 
         //set clicks expand_mouse on mobile
-         if(document.querySelectorAll('.expand_mouse').length && is_mobile){
+         if(document.querySelectorAll('.expand_mouse').length && (is_mobile || window.REDESIGN_VERTICAL)){
             document.querySelectorAll('.expand_mouse').forEach( elem => {
 
                 elem.addEventListener('click',(ev) => {

@@ -1,6 +1,11 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // STICHFEST REDESIGN: stack the formerly-horizontal mod-scroll sections
+    // vertically at every viewport width (plain up/down scroll). Force the
+    // same code path the template uses on mobile, so no horizontal pin runs.
+    window.REDESIGN_VERTICAL = window.REDESIGN_VERTICAL || true;
+
     let sections, scrollH, scrollH_width, scrollHTrigger, triggerProjects, triggerLastProject, triggerCierre, triggerIntro, lastProject_content_tl;
     const sizeProjects = 220;
     const adjust = 50;
@@ -23,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
          //scrolltrigger to show logo small and btn menu
         if(document.querySelector('.mod-scroll__intro')){ 
        
-            if(!is_mobile){
+            if(!is_mobile && !REDESIGN_VERTICAL){
                 let startTl = "125% 0%";
                 triggerHeaderLogo = ScrollTrigger.create({
                     containerAnimation: scroll_tl,
@@ -118,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const carousel = elem.querySelector('.mod-scroll__carousel__content')
                 const carousel_tl = gsap.timeline({paused:true})
-                if(!is_mobile){
+                if(!is_mobile && !REDESIGN_VERTICAL){
                     // carousel_tl.fromTo(carousel,{x:'0'},{x:'-1.45em',ease:'none'},0)
                     carousel_tl.from(carousel,{y:'175vh',ease:'none'},0)
                 }else{
@@ -143,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         //anima mod-scroll__terms
-        if(document.querySelectorAll('.mod-scroll__terms').length && !is_mobile){
+        if(document.querySelectorAll('.mod-scroll__terms').length && !is_mobile && !REDESIGN_VERTICAL){
 
             document.querySelectorAll('.mod-scroll__terms').forEach( elem => {
 
@@ -246,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } )
             lastProject_content_tl.from(document.querySelectorAll('.last-item__content__text span'),{y:'100%', duration: .5, stagger: 0.09, ease: 'power3.easeOut'},"<+=.33")
 
-            if(is_mobile){
+            if(is_mobile || REDESIGN_VERTICAL){
 
                 const lastProject = document.querySelector('.mod-scroll__projects__item.last-item');
                 const lastProject_carouselContent = lastProject.querySelector('.last-item__content');
@@ -341,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
         )
         
         //set scroll_tl
-        if(!is_mobile) scroll_tl = gsap.timeline({paused:true})
+        if(!is_mobile && !REDESIGN_VERTICAL) scroll_tl = gsap.timeline({paused:true})
 
         ///anima scroll-intro && show header logo
         if(document.querySelector('.mod-scroll__intro')){
@@ -404,7 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
 
             //anim width & image 
-            if(!is_mobile){
+            if(!is_mobile && !REDESIGN_VERTICAL){
                 scroll_intro_tl.fromTo(document.querySelector('.mod-scroll__intro > .wrapper'),
                     {width:'100vw'},{width:'80vw', duration: 1.25,  ease: 'power3.out', onStart: () => {
 
@@ -489,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const media = elem.querySelector('.media__source');
 
                 
-                if(!is_mobile){
+                if(!is_mobile && !REDESIGN_VERTICAL){
 
                     ///show & hide textProject
                     projects_tl.to(elem,{opacity: 1, duration: .005, 
@@ -539,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } )
 
-            if(!is_mobile){
+            if(!is_mobile && !REDESIGN_VERTICAL){
                 triggerProjects = ScrollTrigger.create({
                     containerAnimation: scroll_tl,
                     animation: projects_tl,
@@ -570,7 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const numItem = document.querySelectorAll('.last-item__carousel__item').length
             const widthPin = (numItem-1)*100;
 
-            if(!is_mobile){
+            if(!is_mobile && !REDESIGN_VERTICAL){
 
                 ///set width pin depends num items
                 gsap.set(pin,{width:''+widthPin+'vw'})
@@ -686,7 +691,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         ///anima last slide
-        if(document.querySelector('.mod-scroll__cierre') && !is_mobile){
+        if(document.querySelector('.mod-scroll__cierre') && !is_mobile && !REDESIGN_VERTICAL){
 
             const cierre = document.querySelector('.mod-scroll__cierre');
             const cierreContent = document.querySelector('.mod-scroll__cierre__content');
@@ -725,7 +730,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ///SCROLL HORIZONTAL
         ///SCROLL HORIZONTAL
 
-        if(!is_mobile){
+        if(!is_mobile && !REDESIGN_VERTICAL){
 
             sections = document.querySelectorAll('.mod-scroll > div');
             scrollH = document.querySelector('.mod-scroll');
