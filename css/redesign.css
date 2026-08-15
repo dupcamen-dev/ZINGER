@@ -6,16 +6,16 @@
 
 /* ---------------------------------------------------------------- tokens */
 :root {
-  /* new palette - Vintage Werkstatt */
-  --black: #201913;   /* deep warm ink */
-  --beige: #F4EDE0;   /* aged parchment */
-  --cream: #E0D2B8;   /* old-paper cream for formerly-dark panels */
-  --red: #A63D24;     /* brick-red brand accent */
-  --blue: #93AFAE;    /* muted blue-green */
-  --grey: #6E675B;    /* warm umber-grey */
-  --green: #7E8F7C;   /* sage */
-  --yellow: #D9A441;  /* brass */
-  --green-light: #7E8F7C;
+  /* new palette - Vintage Werkstatt Dark */
+  --black: #F4EDE0;   /* light parchment ink */
+  --beige: #16130E;   /* near-black warm page ground */
+  --cream: #201B13;   /* slightly lighter dark panel */
+  --red: #C6502F;     /* brick-red brand accent */
+  --blue: #22302E;    /* dark slate-teal panel */
+  --grey: #27221A;    /* dark warm grey panel */
+  --green: #24301F;   /* dark sage panel */
+  --yellow: #E0B04C;  /* brass highlight */
+  --green-light: #24301F;
 
   /* new typography: system stacks — no webfont downloads, fully distinct */
   --f-regular: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -47,11 +47,19 @@ main .c-white {
   color: var(--black);
 }
 
-/* lighter rhythm: no stark white or dark-grey bands, red blocks soften to a
-   pale terracotta tint so the page reads airy instead of heavy */
-.bg-white { background: var(--beige); }
-.bg-grey { background: #E6DCC8; }
-.bg-red { background: #E5CDBB; }
+/* dark rhythm: page ground stays on --beige, formerly-white bands turn into
+   the deep ground, grey/red blocks become warm dark tones so light ink text
+   keeps strong contrast everywhere */
+.bg-white {
+  background: var(--beige);
+  box-shadow: 0px -1px 0px var(--beige);
+}
+.bg-grey { background: #2E2821; }
+.bg-red { background: #3D2318; }
+.bg-black,
+.bg-blue {
+  box-shadow: 0px -1px 0px var(--cream);
+}
 
 .f-edit, .f-edit-reg, .t-edit {
   font-family: var(--f-edit);
@@ -101,7 +109,7 @@ main .c-white {
   letter-spacing: 0.09em;
 }
 .btn--bg::before {
-  background: var(--beige);
+  background: var(--black);
 }
 .btn--bg-xl {
   --b-radius: 999px;
@@ -113,7 +121,7 @@ main .c-white {
   border-color: var(--black);
 }
 .btn--bg-inv::before {
-  background: var(--black);
+  background: var(--red);
 }
 .btn--bg-inv.btn--bg-blue { background: var(--blue); }
 .btn--bg-inv.btn--bg-red { background: var(--red); color: #fff; }
@@ -132,8 +140,8 @@ main .c-white {
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 .btn--circle:hover {
-  background: var(--black);
-  border-color: var(--black);
+  background: var(--beige);
+  border-color: var(--beige);
 }
 
 /* header buttons keep the template's adaptive blend/invert mechanism */
@@ -227,6 +235,12 @@ header .header__menu .link.under:after { background: var(--red); }
 /* --------------------------------------------------------- hero wordmark */
 main .mod-header__content__wrap-title-text {
   mix-blend-mode: normal;
+}
+/* hero wordmark SVGs ship in near-black ink for the light theme — on the dark
+   theme invert them to parchment while hue-rotating 180deg keeps the brand-red
+   accents red */
+main .mod-header__content__title-text {
+  filter: invert(100%) hue-rotate(180deg);
 }
 
 /* --------------------------------------------------- hero / intro titles */
@@ -380,6 +394,35 @@ main .mod-title--404 .t-supertitulo-xl {
   font-family: var(--f-edit);
   font-weight: 400;
   color: var(--red);
+}
+
+/* ------------------------------------------------------------- modals */
+/* light modal surfaces are hardcoded white in main.css — pull them onto the
+   dark page ground so light-ink text keeps strong contrast */
+.modal--avaliable {
+  background: var(--beige);
+}
+.modal--avaliable .modal__content__wrap-table::-webkit-scrollbar-track {
+  background: var(--beige);
+}
+.modal--anchors .anchors__content {
+  background: var(--beige);
+}
+main .mod-scroll__projects .last-item__content {
+  background: var(--beige);
+}
+/* modal scrollbars: dark track with parchment thumb */
+.modal::-webkit-scrollbar-track {
+  background: var(--beige);
+}
+.modal::-webkit-scrollbar-thumb {
+  background: var(--black);
+}
+
+/* page-transition overlay uses --black (was dark ink, now light parchment) —
+   pin it to the dark ground so the swup transition doesn't flash white */
+.transition {
+  background: var(--beige);
 }
 
 /* ================================================================
@@ -637,6 +680,11 @@ main .mod-scroll__images-text__text {
 main .mod-scroll__carousel {
   width: 100%;
   height: 1.5em !important;
+}
+/* carousel band is --black in main.css (was dark ink, now light parchment) —
+   pin to the dark ground so the light band text stays legible */
+main .mod-scroll__carousel {
+  background: var(--beige);
 }
 
 main .mod-scroll__carousel__content {
