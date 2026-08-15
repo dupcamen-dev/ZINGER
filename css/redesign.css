@@ -1359,3 +1359,31 @@ body::after {
     animation: none;
   }
 }
+
+/* ================================================================
+   HERO LOGO SPLASH (redesign) - the intro logo spreads on load:
+   "Stich" lands in the header zone, "fest" flies to the bottom-right.
+   Toggled by the stich-hero-logo-js block via body.stich-at-hero.
+   ================================================================ */
+header .header {
+  transition: background-color 0.35s ease, border-color 0.35s ease;
+}
+body.stich-at-hero header .header {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+body.stich-at-hero .header__logo {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+body.stich-at-hero main .mod-scroll__intro__logo {
+  opacity: 1;
+}
+body.stich-at-hero main .mod-scroll__intro__logo .logo__normal,
+body.stich-at-hero main .mod-scroll__intro__logo .logo__group {
+  opacity: 0;
+}
+body.stich-at-hero .header__percent,
+body.stich-at-hero .header__progress {
+  opacity: 0 !important;
+}

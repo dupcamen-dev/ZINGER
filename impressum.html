@@ -617,4 +617,103 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
 		});
 	})();
 	</script>
+	<script id="stich-hero-logo-js">
+	(function(){
+		var body = document.body;
+		var scroller = document.querySelector('#smooth-wrapper');
+		var intro, hero, n, g, finalized = false, spreadDone = false;
+
+		var getTop = function(){
+			var t = (window.pageYOffset || document.documentElement.scrollTop || 0);
+			if(!t && scroller && htmlEl.classList.contains('mobile')) t = scroller.scrollTop || 0;
+			return t;
+		};
+
+		var updateHero = function(){
+			if(!intro){ body.classList.remove('stich-at-hero'); return; }
+			var bottom = hero ? hero.offsetHeight : window.innerHeight;
+			if(getTop() < bottom) body.classList.add('stich-at-hero');
+			else body.classList.remove('stich-at-hero');
+		};
+
+		var restoreCompact = function(){
+			if(finalized || !document.querySelector('.mod-scroll__intro')) return;
+			finalized = true;
+			var hl = document.querySelector('.header__logo');
+			if(!hl) return;
+			var hln = hl.querySelector('.logo__normal');
+			var hlg = hl.querySelector('.logo__group');
+			if(hln){ hln.classList.remove('d-none'); hln.classList.remove('disabled'); }
+			gsap.set(hl, { opacity: 1, width: '', height: '' });
+			if(hln) gsap.set(hln, { y: '', opacity: 1, top: '' });
+			if(hlg) gsap.set(hlg, { y: '', opacity: 1 });
+		};
+
+		var playSpread = function(){
+			if(!intro || !n || !g) return;
+			gsap.set(intro, { opacity: 1 });
+			var gRect = g.getBoundingClientRect();
+			var hlg = document.querySelector('.header__logo .logo__group');
+			var hRect = hlg ? hlg.getBoundingClientRect() : null;
+			var xFrom = hRect ? (gRect.left - hRect.left) : (gRect.width * 0.1);
+			var yFrom = hRect ? (gRect.top - hRect.top) : (gRect.height * 0.1);
+			if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+				gsap.set(n, { opacity: 1, scale: 1, clearProps: 'transform' });
+				gsap.set(g, { opacity: 1, x: 0, y: 0, clearProps: 'transform' });
+				return;
+			}
+			gsap.fromTo(n,
+				{ opacity: 0, scale: 0.35, transformOrigin: 'top left' },
+				{ opacity: 1, scale: 1, duration: 0.9, delay: 0.25, ease: 'power3.out' }
+			);
+			gsap.fromTo(g,
+				{ opacity: 0, x: xFrom, y: yFrom },
+				{ opacity: 1, x: 0, y: 0, duration: 1.25, delay: 0.35, ease: 'power3.out' }
+			);
+		};
+
+		var arm = function(){
+			intro = document.querySelector('.mod-scroll__intro__logo');
+			if(!intro){ body.classList.remove('stich-at-hero'); return; }
+			hero = intro.closest('.mod-scroll__intro');
+			n = intro.querySelector('.logo__normal');
+			g = intro.querySelector('.logo__group');
+			finalized = false;
+			spreadDone = false;
+			body.classList.add('stich-at-hero');
+			if(!n || !g) return;
+			gsap.killTweensOf([n, g]);
+			gsap.set(intro, { opacity: 1 });
+			gsap.set(n, { opacity: 0 });
+			gsap.set(g, { opacity: 0 });
+			if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+				gsap.set(n, { opacity: 1, clearProps: 'transform' });
+				gsap.set(g, { opacity: 1, clearProps: 'transform' });
+			}
+		};
+
+		arm();
+		updateHero();
+
+		var targets = scroller ? [scroller, window] : [window];
+		targets.forEach(function(s){ s.addEventListener('scroll', updateHero, { passive: true }); });
+		window.addEventListener('resize', updateHero);
+		window.addEventListener('swup:contentReplaced', function(){
+			arm();
+			updateHero();
+			if(typeof lenis !== 'undefined' && lenis && !lenis.isStopped) restoreCompact();
+		});
+
+		var poll = function(){
+			if(!spreadDone){
+				var o = parseFloat(getComputedStyle(body).opacity);
+				if(o >= 0.9 || document.readyState === 'complete'){ spreadDone = true; playSpread(); }
+			}
+			if(!finalized && document.querySelector('.mod-scroll__intro') && typeof lenis !== 'undefined' && lenis && !lenis.isStopped) restoreCompact();
+		};
+		setInterval(poll, 120);
+		setTimeout(function(){ if(!spreadDone){ spreadDone = true; playSpread(); } }, 5000);
+		setTimeout(function(){ if(document.querySelector('.mod-scroll__intro')) restoreCompact(); }, 12000);
+	})();
+	</script>
 </body></html>
