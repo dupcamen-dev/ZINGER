@@ -1167,13 +1167,13 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
 			return (window.pageYOffset || document.documentElement.scrollTop || 0) || (useWrapper ? (scroller.scrollTop || 0) : 0);
 		};
 		var scrollTop = function(){
-			if(window.lenis){ window.lenis.scrollTo(0); }
-			else if(useWrapper){ scroller.scrollTo({ top: 0, behavior: 'smooth' }); }
+			if(typeof lenis !== 'undefined' && lenis && !lenis.isStopped && typeof lenis.scrollTo === 'function'){ lenis.scrollTo(0); }
+			else if(useWrapper && htmlEl.classList.contains('mobile')){ scroller.scrollTo({ top: 0, behavior: 'smooth' }); }
 			else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 		};
 		var scrollToEl = function(el){
-			if(window.lenis){ window.lenis.scrollTo(el, { offset: -16 }); }
-			else if(useWrapper){
+			if(typeof lenis !== 'undefined' && lenis && !lenis.isStopped && typeof lenis.scrollTo === 'function'){ lenis.scrollTo(el, { offset: -16 }); }
+			else if(useWrapper && htmlEl.classList.contains('mobile')){
 				var top = el.getBoundingClientRect().top + scroller.scrollTop - 16;
 				scroller.scrollTo({ top: top, behavior: 'smooth' });
 			} else { window.scrollTo({ top: el.getBoundingClientRect().top + getTop() - 16, behavior: 'smooth' }); }

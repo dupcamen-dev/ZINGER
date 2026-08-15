@@ -198,7 +198,7 @@ header .header__logo {
   z-index: 1001;
   width: 5.279em !important;
   height: auto !important;
-  font-size: 1.6rem !important;
+  font-size: min(1.6rem, 24px) !important;
   pointer-events: all;
   color: var(--black);
 }
