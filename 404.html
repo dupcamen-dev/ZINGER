@@ -545,7 +545,7 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
 		var useWrapper = !!scroller;
 		var shown = false;
 		var getTop = function(){
-			return useWrapper ? (scroller.scrollTop || 0) : (window.pageYOffset || document.documentElement.scrollTop || 0);
+			return (window.pageYOffset || document.documentElement.scrollTop || 0) || (useWrapper ? (scroller.scrollTop || 0) : 0);
 		};
 		var scrollTop = function(){
 			if(window.lenis){ window.lenis.scrollTo(0); }
