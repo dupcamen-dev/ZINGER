@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         //anima pag legal
-        else{
+        else if(!document.querySelector('.mod-scroll')){
 
             if(control) console.log('anim pag legal');
             

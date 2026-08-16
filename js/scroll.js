@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const restScroll = () => {
 
         const scroll_logo_normal = document.querySelector('.mod-scroll__intro .logo__normal')
-        scroll_logo_normal.addEventListener('click',()=>{
+        if(scroll_logo_normal) scroll_logo_normal.addEventListener('click',()=>{
             if(control) console.log('click scroll_logo_normal');
             if(!scroll_logo_normal.classList.contains('disabled'))
                 // scroll_logo_normal.closest('.logo').querySelector('a').click()
@@ -456,6 +456,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 {opacity:0, duration: .5,  ease: 'linear' },'-=.5')
 
 
+        }
+        else{
+            ///no intro hero: init the rest of the page right away
+            setTimeout(() => { restInit(); restScroll(); }, 60)
         }
 
         ////anima projects
