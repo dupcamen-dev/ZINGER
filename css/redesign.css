@@ -1387,3 +1387,184 @@ body.stich-at-hero .header__percent,
 body.stich-at-hero .header__progress {
   opacity: 0 !important;
 }
+
+/* ================================================================
+   UX SIMPLIFICATION (redesign) - the template ships full-viewport
+   photo panels, giant display type and 100vh rows. This block cuts
+   the amount of empty screen between sections: smaller panels,
+   tighter type, denser rhythm. Ships last so it wins every fight.
+   ================================================================ */
+
+/* --- tighter display type across the whole site --- */
+:root {
+  --supertitulo-xl: 5.8rem;
+  --supertitulo-l: 4.7rem;
+  --supertitulo: 3.3rem;
+  --titulo-xxl: 2rem;
+  --titulo-xl: 1.8rem;
+  --titulo-l: 1.45rem;
+  --titulo: 1.1rem;
+  --supertitulo-xl-lh: 5.3rem;
+  --supertitulo-l-lh: 4.7rem;
+  --supertitulo-lh: 3.3rem;
+  --titulo-xxl-lh: 2.1rem;
+  --titulo-xl-lh: 2rem;
+  --titulo-l-lh: 1.75rem;
+  --titulo-lh: 1.4rem;
+}
+@media (max-width: 1024px) {
+  :root {
+    --supertitulo-xl: 3.6rem;
+    --supertitulo-l: 3.2rem;
+    --supertitulo: 2.1rem;
+    --titulo-xxl: 1.55rem;
+    --titulo-xl: 1.45rem;
+    --titulo-l: 1.2rem;
+    --titulo: 0.95rem;
+    --supertitulo-xl-lh: 3.3rem;
+    --supertitulo-l-lh: 3.2rem;
+    --supertitulo-lh: 2.1rem;
+    --titulo-xxl-lh: 1.55rem;
+    --titulo-xl-lh: 1.6rem;
+    --titulo-l-lh: 1.45rem;
+    --titulo-lh: 1.15rem;
+  }
+}
+@media (max-width: 768px) {
+  :root {
+    --supertitulo-xl: 2rem;
+    --supertitulo-l: 2rem;
+    --supertitulo: 1.6rem;
+    --titulo-xxl: 1.3rem;
+    --titulo-xl: 1.3rem;
+    --titulo-l: 1.1rem;
+    --titulo: 0.9rem;
+    --supertitulo-xl-lh: 1.85rem;
+    --supertitulo-l-lh: 1.85rem;
+    --supertitulo-lh: 1.6rem;
+    --titulo-xxl-lh: 1.35rem;
+    --titulo-xl-lh: 1.4rem;
+    --titulo-l-lh: 1.3rem;
+    --titulo-lh: 1.05rem;
+  }
+}
+@media (max-width: 468px) {
+  main .mod-title--chapter .t-supertitulo-xl {
+    font-size: 1.9rem;
+    line-height: 1.75rem;
+  }
+}
+@media (max-width: 375px) {
+  main .mod-title--chapter .t-supertitulo-xl {
+    font-size: 1.7rem;
+    line-height: 1.55rem;
+  }
+}
+
+/* --- tighter section paddings (on top of the earlier compact set) --- */
+:root {
+  --padding: 5.5rem;
+  --padding-md: 4rem;
+  --padding-sm: 2.6rem;
+  --padding-xs: 0.9rem;
+}
+@media (max-width: 1024px) {
+  :root {
+    --padding: 3.6rem;
+    --padding-md: 2.6rem;
+    --padding-sm: 1.9rem;
+    --padding-xs: 0.8rem;
+  }
+}
+@media (max-width: 768px) {
+  :root {
+    --padding: 2.8rem;
+    --padding-md: 2.1rem;
+    --padding-sm: 1.5rem;
+    --padding-xs: 0.7rem;
+  }
+}
+
+/* --- every formerly-full-viewport band is ~80% of a screen now --- */
+main {
+  --100vh: 80svh;
+}
+
+/* home hero: a compact splash, not a whole screen */
+main .mod-scroll__intro .wrapper {
+  min-height: 80svh;
+}
+@media (max-width: 768px) {
+  main .mod-scroll__intro .wrapper {
+    min-height: 72svh;
+  }
+}
+
+/* home project rows: image + caption instead of one full screen each */
+main .mod-scroll__projects__item__image,
+main .mod-scroll__projects__item__image .media__wrap-source,
+main .mod-scroll__projects__item__image .media__source {
+  height: 46svh;
+}
+main .mod-scroll__projects__item__text {
+  height: 28svh;
+}
+
+/* service rows on Leistungen: cut from 100vh to ~70vh */
+main .mod-scroll__projectInt__image,
+main .mod-scroll__projectInt__content {
+  height: 70vh;
+}
+@media (max-width: 950px) {
+  main .mod-scroll__projectInt__image,
+  main .mod-scroll__projectInt__content {
+    height: 42vh;
+  }
+}
+
+/* inner-page hero headers: no longer a full screen */
+main .mod-header__content {
+  min-height: 66svh;
+}
+@media (max-width: 768px) {
+  main .mod-header__content {
+    min-height: 58svh;
+  }
+}
+
+/* full-bleed photo/video panels: capped well below the viewport */
+main .mod-media--full .media__wrap-source {
+  max-height: 56svh;
+}
+main .mod-media--double .media__wrap-source {
+  max-height: 50svh;
+}
+main .mod-media--maps .media__source {
+  min-height: 42svh !important;
+  max-height: 48svh !important;
+}
+main .mod-media--slider .mod-media__slider__slide__image .media__source {
+  aspect-ratio: 1226 / 600;
+}
+
+/* chapter titles: less air below the (Kapitel / Kontakt) label */
+main .mod-title--chapter .mod-title__intro {
+  margin-bottom: 2.5rem;
+}
+
+/* card grids: tighter rhythm, smaller gaps */
+main .mod-media--multiple .mod-media__card:not(:last-of-type) {
+  margin-bottom: 2.5rem;
+}
+main .mod-media--multiple .mod-media__card:nth-of-type(3n+2) {
+  padding-top: 1.5rem;
+}
+main .mod-media--multiple .mod-media__card__image {
+  margin-bottom: 1.25rem;
+}
+
+/* home "terms" band: denser */
+main .mod-scroll__terms {
+  padding: 2.5rem 0;
+  gap: 2rem;
+}
