@@ -1568,3 +1568,11 @@ main .mod-scroll__terms {
   padding: 2.5rem 0;
   gap: 2rem;
 }
+
+/* ---- grayscale: half the photos ---- */
+.mod-scroll__images__image-single .media__source {
+  filter: grayscale(100%);
+}
+.mod-scroll .flipMedia:nth-of-type(odd) .media__source {
+  filter: grayscale(100%);
+}
