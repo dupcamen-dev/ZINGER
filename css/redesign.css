@@ -279,12 +279,23 @@ header .header__nav a:hover {
     letter-spacing: 0.07em;
   }
 }
-/* hide hamburger, anchors button, footer logo, fullscreen menu */
-header .header__btn,
+/* desktop: hide hamburger & fullscreen menu (nav pills used instead) */
+@media (min-width: 641px) {
+  header .header__btn,
+  header .header__menu {
+    display: none !important;
+  }
+}
+/* always hide anchors button & footer logo */
 header .header__footer__btn,
-header .header__footer__logo,
-header .header__menu {
+header .header__footer__logo {
   display: none !important;
+}
+/* mobile: hide pill nav, show burger */
+@media (max-width: 640px) {
+  header .header__nav {
+    display: none !important;
+  }
 }
 
 /* ------------------------------------------------------------ link style */
